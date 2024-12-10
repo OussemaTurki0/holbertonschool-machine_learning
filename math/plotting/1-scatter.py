@@ -5,6 +5,7 @@ Code to plot x -> y as a scatter plot
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def scatter():
     """
     scatter plot
