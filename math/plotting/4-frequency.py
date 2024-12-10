@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 """
-This script creates and displays a histogram representing the distribution of 
-student grades for "Project A". The grades are simulated using a normal 
-distribution, making it easy to visualize how students performed.
+This script generates and plots a histogram of student grades for "Project A".
+It is designed to help visualize the distribution of grades among students
+based on
+simulated data. The grades are assumed to be normally distributed around a mean
+with a given standard deviation.
 
-The histogram divides grades into bins spanning 0 to 100, with each bin 
-representing a range of 10 points. The bars of the histogram are outlined 
-to improve clarity and make the distribution easier to interpret.
-
-Key Features:
-- Simulated grades follow a normal distribution.
-- Grades are grouped into bins of 10.
-- Each bar in the histogram has a black edge for better visibility.
+The histogram displays the frequency of grades across bins that span the full
+range
+of possible grades from 0 to 100, with each bin representing a range of 10
+grades.
+Each bar in the histogram is outlined in black to enhance visual distinction.
+import numpy as np
+import matplotlib.pyplot as plt
 
 Usage:
-To run this script, no additional arguments are needed. Simply execute it 
-directly as an executable with `./4-frequency.py` (if permissions are set) or 
-by using `python3 4-frequency.py`.
+This script is intended to be run from the command line and doesn't require any
+arguments.
+It can be executed with `./4-frequency.py` if it's made executable or `python3
+4-frequency.py`.
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,17 +26,15 @@ import matplotlib.pyplot as plt
 
 def frequency():
     """
-    Generates a histogram of student grades and customizes the plot.
-
     Attributes:
-    - student_grades (numpy.ndarray): Array containing randomly generated grades.
-    - bins (list): Defines the grade ranges for the histogram.
+    student_grades (numpy.ndarray): An array of randomly generated student
+    grades.
+    bins (list): A list of integers defining the edges of the bins for the
+    histogram.
 
-    Steps:
-    1. Simulate grades using a normal distribution with mean=68 and std=15.
-    2. Divide grades into bins from 0 to 100 (increments of 10).
-    3. Create the histogram and add visual enhancements such as axis labels,
-       a title, and bar edges.
+    Functions:
+    main: Sets up the plot with appropriate labels, axes, and visual style, and
+    displays the histogram.
     """
 
     np.random.seed(5)
