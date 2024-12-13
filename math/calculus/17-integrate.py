@@ -4,6 +4,7 @@
 integration functions
 """
 def poly_integral(poly, C=0):
+
     """
     Check validity of poly and C, and handle empty polyy
     """

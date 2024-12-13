@@ -7,6 +7,7 @@ Calculate the sum of squares from 1 to n using the formula:
 
 
 def summation_i_squared(n):
+
     """
     Parameters:
     n (int): The number up to which the square of numbers
