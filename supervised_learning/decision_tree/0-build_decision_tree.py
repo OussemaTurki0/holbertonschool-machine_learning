@@ -40,7 +40,7 @@ class Node:
             max_depth = max(max_depth, self.left_child.max_depth_below())
 
         # If the node has a right child, calculate the maximum depth below
-        # the right child
+        # the right chid
         if self.right_child is not None:
             max_depth = max(max_depth, self.right_child.max_depth_below())
 
