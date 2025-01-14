@@ -4,6 +4,7 @@
 import tensorflow.compat.v1 as tf
 tf.disable_eager_execution()
 
+
 def create_placeholders(nx, classes):
     """
     Creates and returns two placeholders for the input data and labels.
