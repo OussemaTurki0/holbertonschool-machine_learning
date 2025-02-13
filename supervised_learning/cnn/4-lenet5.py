@@ -1,53 +1,59 @@
 #!/usr/bin/env python3
 """
-Pooling Back propagation
+Builds a modified version of the LeNet-5 architecture using tensorflow.
 """
 
-import numpy as np
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 
-def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
+def lenet5(x, y):
     """
-    Perform back propagation over a pooling layer of a neural network
+    Builds a modified version of the LeNet-5 architecture using tensorflow.
     """
-    # Extract dimensions from the input shapes
-    m, h_new, w_new, c = dA.shape
-    h_prev, w_prev = A_prev.shape[1], A_prev.shape[2]
-    kh, kw = kernel_shape
-    sh, sw = stride
 
-    # Initialize the gradient for the previous layer with zeros
-    dA_prev = np.zeros_like(A_prev)
+    # Initialize the he_normal initializer
+    initializer = tf.keras.initializers.VarianceScaling(scale=2.0)
 
-    # Perform backpropagation through the pooling layer
-    for i in range(m):
-        for h in range(h_new):
-            for w in range(w_new):
-                for channel in range(c):
-                    # Define the slice boundaries
-                    vert_start = h * sh
-                    vert_end = vert_start + kh
-                    horiz_start = w * sw
-                    horiz_end = horiz_start + kw
+    # First Convolutional Layer
+    conv1 = tf.layers.Conv2D(filters=6, kernel_size=(5, 5), padding='same',
+                             activation=tf.nn.relu,
+                             kernel_initializer=initializer)(x)
 
-                    if mode == 'max':
-                        # Find the maximum value in the slice and its mask
-                        A_slice = A_prev[i, vert_start:vert_end,
-                                         horiz_start:horiz_end, channel]
-                        mask = (A_slice == np.max(A_slice))
-                        dA_prev[i, vert_start:vert_end,
-                                horiz_start:horiz_end, channel] += (
-                                        mask * dA[i, h, w, channel]
-                                        )
+    # First Max Pooling Layer
+    pool1 = tf.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(conv1)
 
-                    elif mode == 'avg':
-                        # Compute the average gradient distribution
-                        da = dA[i, h, w, channel]
-                        shape = (kh, kw)
-                        average_dA = da / (kh * kw)
-                        dA_prev[i, vert_start:vert_end,
-                                horiz_start:horiz_end, channel] += (
-                                        np.ones(shape) * average_dA
-                                        )
+    # Second Convolutional Layer
+    conv2 = tf.layers.Conv2D(filters=16, kernel_size=(5, 5), padding='valid',
+                             activation=tf.nn.relu,
+                             kernel_initializer=initializer)(pool1)
 
-    return dA_prev
+    # Second Max Pooling Layer
+    pool2 = tf.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(conv2)
+
+    # Flatten the output of the last pooling layer
+    flatten = tf.layers.Flatten()(pool2)
+
+    # Fully Connected Layer with 120 nodes
+    fc1 = tf.layers.Dense(units=120, activation=tf.nn.relu,
+                          kernel_initializer=initializer)(flatten)
+
+    # Fully Connected Layer with 84 nodes
+    fc2 = tf.layers.Dense(units=84, activation=tf.nn.relu,
+                          kernel_initializer=initializer)(fc1)
+
+    # Fully Connected Softmax Output Layer with 10 nodes
+    logits = tf.layers.Dense(units=10, kernel_initializer=initializer)(fc2)
+    y_pred = tf.nn.softmax(logits)
+
+    # Loss function
+    loss = tf.losses.softmax_cross_entropy(onehot_labels=y, logits=logits)
+
+    # Training operation
+    train_op = tf.train.AdamOptimizer().minimize(loss)
+
+    # Accuracy calculation
+    correct_prediction = tf.equal(tf.argmax(y_pred, 1), tf.argmax(y, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+    return y_pred, train_op, loss, accuracy
