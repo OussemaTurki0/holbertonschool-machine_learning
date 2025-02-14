@@ -5,7 +5,7 @@ Test suite for the projection_block module
 
 import unittest
 import tensorflow as tf
-from projection_block import projection_block
+projection_block = __import__('3-projection_block').projection_block
 
 
 class TestProjectionBlock(unittest.TestCase):

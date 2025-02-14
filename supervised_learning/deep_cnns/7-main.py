@@ -5,7 +5,7 @@ Test suite for the densenet121 implementation
 
 import unittest
 from tensorflow import keras as K
-from densenet121 import densenet121
+densenet121 = __import__('7-densenet121').densenet121
 
 
 class TestDenseNet121(unittest.TestCase):

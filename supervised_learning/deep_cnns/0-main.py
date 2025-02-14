@@ -5,7 +5,7 @@ Test suite for the inception_block module
 
 import unittest
 import tensorflow as tf
-from inception_block import inception_block
+inception_block = __import__('0-inception_block').inception_block
 
 
 class TestInceptionBlock(unittest.TestCase):

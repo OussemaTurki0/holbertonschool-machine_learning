@@ -5,7 +5,7 @@ Test suite for the identity_block module
 
 import unittest
 import tensorflow as tf
-from identity_block import identity_block
+identity_block = __import__('2-identity_block').identity_block
 
 
 class TestIdentityBlock(unittest.TestCase):

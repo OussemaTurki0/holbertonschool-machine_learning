@@ -5,7 +5,7 @@ Test suite for the transition_layer module
 
 import unittest
 import tensorflow as tf
-from transition_layer import transition_layer
+transition_layer = __import__('6-transition_layer').transition_layer
 
 
 class TestTransitionLayer(unittest.TestCase):

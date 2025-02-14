@@ -5,7 +5,7 @@ Test suite for the inception_network module
 
 import unittest
 import tensorflow as tf
-from inception_network import inception_network
+inception_network = __import__('1-inception_network').inception_network
 
 
 class TestInceptionNetwork(unittest.TestCase):

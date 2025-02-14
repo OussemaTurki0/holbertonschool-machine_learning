@@ -5,7 +5,7 @@ Test suite for the dense_block module
 
 import unittest
 import tensorflow as tf
-from dense_block import dense_block
+dense_block = __import__('5-dense_block').dense_block
 
 
 class TestDenseBlock(unittest.TestCase):

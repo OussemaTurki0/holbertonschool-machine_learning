@@ -5,7 +5,7 @@ Test suite for the resnet50 module
 
 import unittest
 import tensorflow as tf
-from resnet50 import resnet50
+resnet50 = __import__('4-resnet50').resnet50
 
 
 class TestResNet50(unittest.TestCase):
