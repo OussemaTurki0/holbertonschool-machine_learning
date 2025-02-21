@@ -1,8 +1,7 @@
 import unittest
 import numpy as np
 import tensorflow as tf
-from your_module import preprocess_data, build_cnn  # Replace 'your_module' with the actual module name
-
+preprocess_data = __import__('0-transfer').preprocess_data
 class TestModel(unittest.TestCase):
 
     def test_preprocess_data(self):
