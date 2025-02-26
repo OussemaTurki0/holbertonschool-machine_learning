@@ -3,7 +3,7 @@
 Initialize the Yolo class with the specified parameters.
 """
 
-import tensorflow.keras as K
+import keras as K
 import numpy as np
 
 
