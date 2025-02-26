@@ -1,22 +1,7 @@
 import unittest
-import keras as K
 import numpy as np
-import importlib.util
-import sys
-
-# Specify the path to your module file
-module_name = "yolo_0"
-file_path = "./0-yolo.py"
-
-# Load the module dynamically
-spec = importlib.util.spec_from_file_location(module_name, file_path)
-yolo_module = importlib.util.module_from_spec(spec)
-sys.modules[module_name] = yolo_module
-spec.loader.exec_module(yolo_module)
-
-# Now you can access the Yolo class
-Yolo = yolo_module.Yolo
-
+import tensorflow.keras as K
+from 1-yolo import Yolo
 
 class TestYolo(unittest.TestCase):
     """
@@ -27,6 +12,7 @@ class TestYolo(unittest.TestCase):
         """
         Set up test parameters.
         """
+        # Dummy paths for the test
         self.model_path = "test_model.h5"
         self.classes_path = "test_classes.txt"
         self.class_t = 0.5
@@ -56,6 +42,35 @@ class TestYolo(unittest.TestCase):
         self.assertEqual(yolo.nms_t, self.nms_t)
         np.testing.assert_array_equal(yolo.anchors, self.anchors)
 
+    def test_load_class_names(self):
+        """
+        Test the loading of class names from file.
+        """
+        yolo = Yolo(self.model_path, self.classes_path, self.class_t, self.nms_t, self.anchors)
+        self.assertEqual(yolo.class_names, ["person", "car", "dog"])
+
+    def test_process_outputs(self):
+        """
+        Test the process_outputs method of the Yolo class.
+        """
+        yolo = Yolo(self.model_path, self.classes_path, self.class_t, self.nms_t, self.anchors)
+
+        # Dummy outputs (this should be in the same shape as the model's output)
+        outputs = [np.random.random((13, 13, 3, 85)), np.random.random((26, 26, 3, 85))]
+        image_size = (416, 416)
+
+        boxes, box_confidences, box_class_probs = yolo.process_outputs(outputs, image_size)
+
+        # Check if boxes, confidences, and class_probs are returned as lists
+        self.assertIsInstance(boxes, list)
+        self.assertIsInstance(box_confidences, list)
+        self.assertIsInstance(box_class_probs, list)
+
+        # Check if each element in the lists has the correct shape
+        self.assertEqual(boxes[0].shape, (13, 13, 3, 4))  # Assuming box coordinates are (x_min, y_min, x_max, y_max)
+        self.assertEqual(box_confidences[0].shape, (13, 13, 3, 1))
+        self.assertEqual(box_class_probs[0].shape, (13, 13, 3, 80))  # Assuming 80 classes in total
+
     def tearDown(self):
         """
         Clean up test files.
@@ -63,7 +78,6 @@ class TestYolo(unittest.TestCase):
         import os
         os.remove(self.model_path)
         os.remove(self.classes_path)
-
 
 if __name__ == "__main__":
     unittest.main()
