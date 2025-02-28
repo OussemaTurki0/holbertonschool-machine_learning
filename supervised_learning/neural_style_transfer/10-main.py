@@ -7,15 +7,6 @@ import random
 import numpy as np
 import tensorflow as tf
 
-#!/usr/bin/env python3
-
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-import os
-import random
-import numpy as np
-import tensorflow as tf
-
 NST = __import__('10-neural_style').NST
 
 
