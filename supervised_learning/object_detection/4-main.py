@@ -1,6 +1,5 @@
 import unittest
 import numpy as np
-from 4-yolo import Yolo
 
 class TestYolo(unittest.TestCase):
     def setUp(self):
