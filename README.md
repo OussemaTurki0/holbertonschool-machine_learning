@@ -1,4 +1,4 @@
-![App Screenshot](https://i.postimg.cc/BvJ1NRVG/what-is-machine-learning-1024x683.png)
+
 
 ## Welcome to the ML Projects Repository
 
