@@ -1,3 +1,5 @@
+![App Screenshot](https://i.postimg.cc/BvJ1NRVG/what-is-machine-learning-1024x683.png)
+
 ## Welcome to the ML Projects Repository
 
 This repository serves as a comprehensive collection of machine learning (ML) projects designed to cover both fundamental concepts and advanced techniques. Each folder represents a unique project, offering practical exposure to different aspects of ML, from core mathematical foundations to cutting-edge neural networks.
