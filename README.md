@@ -55,4 +55,3 @@ The projects in this repository are categorized as follows:
 Each project folder contains source code and necessary resources to facilitate understanding and implementation.
 
 Thank you for checking out the **ML Projects Repository**. Contributions, feedback, and suggestions are always welcome. Let's continue pushing the boundaries of machine learning together!
-
