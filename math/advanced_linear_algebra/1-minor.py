@@ -3,6 +3,7 @@
     Minor
 """
 
+
 def sub_matrix(matrix, i):
     """
     Creates a submatrix by removing the first row and the i-th column

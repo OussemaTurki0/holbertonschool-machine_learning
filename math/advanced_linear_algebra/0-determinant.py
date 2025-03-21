@@ -3,6 +3,7 @@
 A function that calculates the determinant of a matrix
 """
 
+
 def sub_matrix(matrix, i):
     """
     Creates a submatrix by removing the first row and the i-th column
