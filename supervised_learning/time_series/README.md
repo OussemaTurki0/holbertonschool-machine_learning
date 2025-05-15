@@ -1,1 +1,3 @@
-README.md
+Time Series Forecasting is the process of predicting future values based on previously observed values. It’s widely used in finance, weather prediction, and stock/cryptocurrency trading.
+
+In this project, I used Recurrent Neural Networks (RNNs) to forecast the closing price of Bitcoin (BTC). The idea is to train a model that looks at the past 24 hours of BTC prices and predicts the next hour's price.
