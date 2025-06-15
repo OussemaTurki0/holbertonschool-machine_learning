@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from 0-qa import question_answer
+
+question_answer = __import__('0-qa').question_answer
 
 def answer_loop(reference):
     """Answers questions interactively from a single reference"""
