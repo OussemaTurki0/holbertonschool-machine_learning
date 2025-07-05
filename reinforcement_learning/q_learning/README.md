@@ -1,0 +1,1 @@
+This project implements Q-learning, a reinforcement learning algorithm, to solve the FrozenLake environment from the Gymnasium library. The goal is to train an agent to navigate a slippery ice lake avoiding holes and reaching the goal.
