@@ -3,6 +3,7 @@
 
 import pandas as pd
 
+
 def index(df):
     """Sets Timestamp column as index"""
     return df.set_index("Timestamp")

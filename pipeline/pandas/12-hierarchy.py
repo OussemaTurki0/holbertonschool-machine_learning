@@ -4,6 +4,7 @@
 import pandas as pd
 index = __import__('10-index').index
 
+
 def hierarchy(df1, df2):
     """Rearranges MultiIndex so Timestamp is first"""
     df1 = index(df1)

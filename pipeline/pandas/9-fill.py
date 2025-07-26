@@ -3,6 +3,7 @@
 
 import pandas as pd
 
+
 def fill(df):
     """Fills missing values and drops Weighted_Price"""
     df = df.drop(columns=["Weighted_Price"])
